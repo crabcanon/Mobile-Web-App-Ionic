@@ -1,0 +1,35 @@
+<ion-view view-title="Notes" ng-controller="NotesCtrl">   
+  <ion-header-bar class="bar bar-header bar-light">
+        <button class="button button-icon icon ion-ios-bolt-outline assertive" ng-click="toIntro()"></button>
+        <h1 class="title assertive">Notes / 日志</h1>
+        <button class="button button-icon ion-ios-search assertive" ng-click="clearNotesSearch()"></button>
+    </ion-header-bar>
+    <div class="list" style="top:43px;" ng-show="showNotesSearch">
+      <label class="item item-input">
+        <i class="icon ion-search placeholder-icon"></i>
+        <input type="text" placeholder="Search">
+      </label>
+  </div>
+  <ion-content has-header="true" style="margin-top:-10px;"> 
+    <ion-refresher pulling-text="Pull To Refresh / 下拉刷新" on-refresh="doRefreshNotes()" refreshing-icon="ion-loading-c"></ion-refresher>
+    <div class="list card" ng-repeat="note in notes">
+        <div class="item item-avatar">
+          <img src="{{note.icon}}">
+          <h2>{{note.title}}</h2>
+          <p>{{note.time}}</p>
+        </div>
+
+        <div class="item item-body">
+          <p style="text-align:justify;">
+              {{note.intro}}
+          </p>
+        </div>
+    </div>    
+  </ion-content>
+</ion-view>
+
+<script id="templates/loadingNotes.html" type="text/ng-template">
+  <ion-spinner icon="ripple" class="spinner spinner-ripple"><svg viewBox="0 0 64 64"><g fill="none" fill-rule="evenodd" stroke-width="3"><circle cx="32" cy="32" r="12.3784"><animate attributeName="r" begin="0s" dur="2s" values="0;24" keyTimes="0;1" keySplines="0.1,0.2,0.3,1" calcMode="spline" repeatCount="indefinite"></animate><animate attributeName="stroke-opacity" begin="0s" dur="2s" values=".2;1;.2;0" repeatCount="indefinite"></animate></circle><circle cx="32" cy="32" r="22.9914"><animate attributeName="r" begin="-1s" dur="2s" values="0;24" keyTimes="0;1" keySplines="0.1,0.2,0.3,1" calcMode="spline" repeatCount="indefinite"></animate><animate attributeName="stroke-opacity" begin="-1s" dur="2s" values=".2;1;.2;0" repeatCount="indefinite"></animate></circle></g></svg></ion-spinner>
+  <br />
+  <span>Loading...</span>
+</script>

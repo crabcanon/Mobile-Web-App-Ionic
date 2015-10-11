@@ -1,0 +1,61 @@
+<ion-view view-title="Projects" ng-controller="ProjectsCtrl">
+	<ion-header-bar class="bar bar-header bar-light">
+        <button class="button button-icon icon ion-ios-bolt-outline assertive" ng-click="toIntro()"></button>
+        <h1 class="title assertive">Projects / 近期项目</h1>
+        <button class="button button-icon ion-ios-search assertive" ng-click="clearProjectsSearch()"></button>
+    </ion-header-bar>
+   	<div class="list" style="top:43px;" ng-show="showProjectsSearch">
+  		<label class="item item-input">
+    		<i class="icon ion-search placeholder-icon"></i>
+    		<input type="text" placeholder="Search">
+  		</label>
+	  </div>
+        
+    <ion-content has-tabs="true" style="margin-top:-10px;" ng-show="projects">
+       	<ion-refresher pulling-text="Pull To Refresh / 下拉刷新" on-refresh="doRefreshProjects()" refreshing-icon="ion-loading-c"></ion-refresher>
+        <div class="list card" ng-repeat="project in projects">
+  			<div class="item item-avatar">
+    			<img src="{{project.icon}}">
+    			<h2>{{project.name}}</h2>
+    			<p>{{project.time}}</p>
+  			</div>
+
+        <div class="item item-body">
+          <ion-slide-box show-pager="true" on-slide-changed="slideHasChanged($index)">
+            <ion-slide ng-repeat="img in project.img">
+              <div class=""><img ng-src="{{img}}" width="100%"></div>
+            </ion-slide>
+          </ion-slide-box>
+        </div>
+
+  			<div class="item item-body">
+          <h2>Introduction</h2>
+    			<p style="text-align:justify;">
+      				{{project.intro}}
+    			</p>
+  			</div>
+
+         <div class="item item-body">
+          <div class="row">
+            <div class="col col-50">
+              <h2>Client</h2>
+              <p ng-bind-html="project.client"></p><br>
+              <h2>Tags</h2>
+              <span ng-repeat="key in project.key"><p>[{{key}}]</p></span>
+            </div>
+            <div class="col col-50">
+              <h2>Technologies</h2>
+              <span ng-repeat="tech in project.tech"><p>[{{tech}}]</p></span>
+            </div>
+          </div>
+        </div>
+		</div>
+  </ion-content>
+
+  <ion-content ng-if="projects.length == 0">
+     <ion-spinner icon="ripple" class="spinner spinner-ripple"><svg viewBox="0 0 64 64"><g fill="none" fill-rule="evenodd" stroke-width="3"><circle cx="32" cy="32" r="12.3784"><animate attributeName="r" begin="0s" dur="2s" values="0;24" keyTimes="0;1" keySplines="0.1,0.2,0.3,1" calcMode="spline" repeatCount="indefinite"></animate><animate attributeName="stroke-opacity" begin="0s" dur="2s" values=".2;1;.2;0" repeatCount="indefinite"></animate></circle><circle cx="32" cy="32" r="22.9914"><animate attributeName="r" begin="-1s" dur="2s" values="0;24" keyTimes="0;1" keySplines="0.1,0.2,0.3,1" calcMode="spline" repeatCount="indefinite"></animate><animate attributeName="stroke-opacity" begin="-1s" dur="2s" values=".2;1;.2;0" repeatCount="indefinite"></animate></circle></g></svg></ion-spinner>
+    <br />
+    <span>Loading...</span>
+  </ion-content>
+</ion-view>
+

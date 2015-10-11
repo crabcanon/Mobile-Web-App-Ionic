@@ -1,0 +1,43 @@
+<ion-view title="" >
+  <!-- <ion-nav-buttons side="left">
+    <button class="button button-positive button-clear no-animation"
+      ng-click="startApp()" ng-if="!slideIndex">
+      Skip Intro
+    </button>
+    <button class="button button-positive button-clear no-animation"
+      ng-click="previous()" ng-if="slideIndex > 0">
+      Previous Slide
+    </button>
+  </ion-nav-buttons>
+
+  <ion-nav-buttons side="right"> 
+    <button class="button button-positive button-clear no-animation"
+      ng-click="next()" ng-if="slideIndex != 1">
+      Next
+    </button>
+    <button class="button button-positive button-clear no-animation"
+      ng-click="startApp()" ng-if="slideIndex == 1">
+      Start using MyApp
+    </button>
+  </ion-nav-buttons> -->
+
+  <ion-slide-box on-slide-changed="slideChanged(index)">
+    <ion-slide style="margin-top: 12%;">
+      <div style="padding-left:20px;padding-right:20px;">
+        <h4>Welcome to Huang's homepage!</h4><br />
+        <p>欢迎来到黄野的个人主页！</p><br />
+        <p>I've worked hard to make you happy.</p>
+        <p>But if you are angry, too bad.</p>
+      </div><br><br />
+      <div class="row">
+        <a id="iphone" class="col col-50" href="" ng-click="startApp()"><img src="lib/ionicons/src/iphone.svg" height="100" /></a>
+        <a id="laptop" class="col col-50" data-ng-href="http://crabcanon.com/"><img src="lib/ionicons/src/ios-monitor-outline.svg" height="100" /></a>
+      </div>
+      <div class="row">
+        <div id="iphone-text" class="col col-50"><p>Mobile (移动版)</p></div>
+        <div id="laptop-text" class="col col-50"><p>iPad / Desktop (桌面版)</p></div>
+      </div>
+    </ion-slide>
+  </ion-slide-box>
+
+</ion-view>
